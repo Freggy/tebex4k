@@ -13,6 +13,5 @@ infix fun Body.PUT(param: Pair<String, String>): Request {
 
 }
 
-infix fun String.with(s: String): Pair<String, String> {
-    return Pair(this, s)
-}
+// Wrap 'to' call because 'with' sounds better
+infix fun String.with(s: String) = this to s
