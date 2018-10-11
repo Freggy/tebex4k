@@ -15,12 +15,16 @@ class Tebex {
 
     companion object Factory {
 
-        fun async(token: String): TebexHttpClient {
-            return TebexAsyncHttpClient(token, ApacheAsyncClient())
+        private val extractor = TebexHttpExtractor()
+
+        @JvmStatic
+        fun async(token: String): TebexAsyncHttpClient {
+            return TebexAsyncHttpClient(token, ApacheAsyncClient(), this.extractor)
         }
 
-        fun sync(token: String): TebexHttpClient {
-            return TebexSyncHttpClient(token, ApacheClient())
+        @JvmStatic
+        fun sync(token: String): TebexSyncHttpClient {
+            return TebexSyncHttpClient(token, ApacheClient(), this.extractor)
         }
     }
 

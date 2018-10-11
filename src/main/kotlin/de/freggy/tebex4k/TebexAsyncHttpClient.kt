@@ -1,9 +1,8 @@
 package de.freggy.tebex4k
 
+import de.freggy.tebex4k.data.AccountInformation
 import org.http4k.client.AsyncHttpClient
 import org.http4k.core.Body
-import org.http4k.core.HttpHandler
-import org.http4k.core.Method
 import org.http4k.core.Response
 
 
@@ -12,11 +11,16 @@ import org.http4k.core.Response
  * <p>
  * @author Yannic Rieger
  */
-class TebexAsyncHttpClient(private val token: String, private val handler: AsyncHttpClient) : TebexHttpClient {
+class TebexAsyncHttpClient(
+        private val token: String,
+        private val handler: AsyncHttpClient,
+        private val extractor: TebexHttpExtractor
+) {
 
-
-    fun bla(comsuner: (Response) -> Unit) {
-        this.handler(Body.EMPTY PUT ("url" with "token"),  comsuner)
+    fun getAccountInformation(consumer: (AccountInformation) -> Unit) {
+        this.handler(Body.EMPTY get ("" with this.token)) {
+            consumer(this.extractor.extractAccountInformation(it))
+        }
     }
 
 }
