@@ -1,7 +1,6 @@
 package de.freggy.tebex4k
 
 import de.freggy.tebex4k.data.AccountInformation
-import org.http4k.client.ApacheClient
 import org.http4k.core.Body
 import org.http4k.core.HttpHandler
 
@@ -16,9 +15,10 @@ class TebexSyncHttpClient(
         private val extractor: TebexHttpExtractor
 ) {
 
-    fun getAccountInformation(): AccountInformation {
-        return this.extractor.extractAccountInformation(
-                this.handler(Body.EMPTY get ("" with this.token))
-        )
-    }
+    val commandQueue = CommandQueue()
+
+    fun getAccountInformation(): AccountInformation
+            = this.extractor.extractAccountInformation(this.handler(Body.EMPTY get (INFORMATION_ENDPOINT with this.token)))
+
+    fun
 }
