@@ -8,23 +8,21 @@ import org.http4k.core.Response
 
 /**
  * Created by Yannic Rieger on 06.10.2018.
- * <p>
+ *
  * @author Yannic Rieger
  */
 class Tebex {
 
     companion object Factory {
 
-        private val extractor = TebexHttpExtractor()
-
         @JvmStatic
         fun async(token: String): TebexAsyncHttpClient {
-            return TebexAsyncHttpClient(token, ApacheAsyncClient(), this.extractor)
+            return TebexAsyncHttpClient(token, ApacheAsyncClient())
         }
 
         @JvmStatic
         fun sync(token: String): TebexSyncHttpClient {
-            return TebexSyncHttpClient(token, ApacheClient(), this.extractor)
+            return TebexSyncHttpClient(token, ApacheClient())
         }
     }
 

@@ -38,6 +38,18 @@
       <artifactId>http4k-format-jackson</artifactId>
       <version>3.38.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.http4k</groupId>
+      <artifactId>http4k-server-apache</artifactId>
+      <version>3.38.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.http4k</groupId>
+      <artifactId>http4k-contract</artifactId>
+      <version>3.38.1</version>
+    </dependency>
+
+
   </dependencies>
 
   <build>

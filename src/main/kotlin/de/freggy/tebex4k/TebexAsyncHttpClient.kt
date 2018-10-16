@@ -8,19 +8,13 @@ import org.http4k.core.Response
 
 /**
  * Created by Yannic Rieger on 06.10.2018.
- * <p>
+ *
  * @author Yannic Rieger
  */
-class TebexAsyncHttpClient(
-        private val token: String,
-        private val handler: AsyncHttpClient,
-        private val extractor: TebexHttpExtractor
-) {
+class TebexAsyncHttpClient(private val token: String, private val handler: AsyncHttpClient) {
 
     fun getAccountInformation(consumer: (AccountInformation) -> Unit) {
-        this.handler(Body.EMPTY get ("" with this.token)) {
-            consumer(this.extractor.extractAccountInformation(it))
-        }
+        this.handler(Body.EMPTY GET ("" with this.token)) { consumer(it.accountInformation()) }
     }
 
 }
